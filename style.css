@@ -369,16 +369,16 @@ h1,h2,h3,h4{
 }
 
 .intro-splash{
-  position:sticky;
-  top:88px;
-  min-height:calc(100vh - 88px);
+  position:relative;
+  top:auto;
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:46px 0 110px;
+  padding:140px 0 80px;
 }
 .intro-splash-inner{
-  min-height:calc(100vh - 88px - 156px);
+  min-height:auto;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -432,7 +432,7 @@ h1,h2,h3,h4{
 .site-content-shell{
   position:relative;
   z-index:4;
-  margin-top:-9vh;
+  margin-top:0;
   background:
     radial-gradient(circle at top left, rgba(62,226,255,.10), transparent 28%),
     radial-gradient(circle at top right, rgba(111,121,255,.12), transparent 24%),
@@ -1032,5 +1032,31 @@ h1,h2,h3,h4{
     opacity:1 !important;
     transform:none !important;
     filter:none !important;
+  }
+}
+
+@media (max-width: 1100px){
+  .parallax{
+    transform:none !important;
+  }
+
+  .floating-card,
+  .floating-stat{
+    display:none;
+  }
+}
+
+@media (max-width: 900px){
+  .header-shell,
+  .card,
+  .contact-form,
+  .contact-point,
+  .btn,
+  .eyebrow{
+    backdrop-filter:none !important;
+  }
+
+  .hero-visual{
+    min-height:460px;
   }
 }
