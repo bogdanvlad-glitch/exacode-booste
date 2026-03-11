@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="shortcut icon" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="favicon-32.png">
+  <meta name="theme-color" content="#070d1b">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Contact — ExaCode</title>
+  <meta name="description" content="Contactez ExaCode pour lancer un site premium, une landing page ambitieuse ou une refonte web plus visuelle et plus haut de gamme.">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-shell">
+      <a class="brand" href="index.html" aria-label="Accueil ExaCode">
+        <img src="logo.png" alt="Logo ExaCode">
+        <span>ExaCode</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="work.html">Projets</a>
+        <a href="index.html#process">Méthode</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+
+      <a class="btn btn-primary" href="contact.html#formulaire">Parler de votre projet</a>
+    </div>
+  </header>
+
+
+  <main class="page-main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-grid">
+          <article class="card page-hero-copy" data-reveal>
+            <span class="eyebrow">Contact</span>
+            <h1>Parlons d’une refonte beaucoup plus forte.</h1>
+            <p class="page-intro">
+              Site premium, landing page ambitieuse, présence plus haut de gamme, interface plus nette :
+              envoie quelques lignes et on pose rapidement une direction claire.
+            </p>
+          </article>
+
+          <article class="page-hero-banner" data-reveal>
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80" alt="Réunion et collaboration">
+            <span class="floating-tag">Réponse rapide & premier cadrage</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="formulaire">
+      <div class="container">
+        <div class="contact-shell" data-reveal>
+          <div class="contact-copy">
+            <span class="eyebrow">Discutons du projet</span>
+            <h3>Un échange simple, rapide et concret.</h3>
+            <p class="lead">
+              On revient vers vous rapidement pour comprendre le besoin, cadrer le bon niveau d’intervention
+              et voir comment faire évoluer votre site vers quelque chose de beaucoup plus premium.
+            </p>
+
+            <div class="contact-points">
+              <a class="contact-point" href="tel:+470112745">
+                <div>
+                  <span>Téléphone</span>
+                  <strong>+470 11 27 45</strong>
+                </div>
+                <span>Réponse sous 24h</span>
+              </a>
+
+              <a class="contact-point" href="mailto:exacodeofficial@gmail.com">
+                <div>
+                  <span>Email</span>
+                  <strong>exacodeofficial@gmail.com</strong>
+                </div>
+                <span>Brief & prise de contact</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" action="https://formspree.io/f/myknzyky" method="POST">
+            <div class="form-grid">
+              <label>
+                <span>Votre nom</span>
+                <input type="text" name="name" placeholder="Votre nom" required>
+              </label>
+
+              <label>
+                <span>Votre email</span>
+                <input type="email" name="email" placeholder="Votre email" required>
+              </label>
+
+              <label>
+                <span>Votre message</span>
+                <textarea name="message" placeholder="Décrivez brièvement votre besoin, votre activité et ce que vous souhaitez améliorer." required></textarea>
+              </label>
+
+              <button type="submit" class="btn btn-primary">Envoyer le message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="work-grid">
+          <article class="card work-card" data-reveal>
+            <span class="eyebrow">Site vitrine</span>
+            <h3>Présence plus crédible</h3>
+            <p>Pour monter le niveau perçu, mieux raconter l’offre et inspirer davantage confiance dès l’arrivée.</p>
+          </article>
+          <article class="card work-card" data-reveal>
+            <span class="eyebrow">Landing page</span>
+            <h3>Plus d’impact commercial</h3>
+            <p>Pour mettre en scène une offre, guider l’utilisateur et créer une impression plus premium.</p>
+          </article>
+          <article class="card work-card" data-reveal>
+            <span class="eyebrow">Plateforme</span>
+            <h3>Interface plus nette</h3>
+            <p>Pour clarifier la structure, renforcer la lisibilité et donner au produit un vrai niveau de finition.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <a class="brand" href="index.html">
+          <img src="logo.png" alt="Logo ExaCode">
+          <span>ExaCode</span>
+        </a>
+
+        <div class="footer-nav">
+          <a href="index.html">Accueil</a>
+          <a href="work.html">Projets</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <p>© 2026 ExaCode — Tous droits réservés</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+
+</body>
+</html>
