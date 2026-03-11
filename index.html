@@ -3,985 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ExaCode — Expériences web premium, interfaces et plateformes sur mesure</title>
-  <meta name="description" content="ExaCode conçoit des expériences web haut de gamme, des landing pages ambitieuses et des plateformes rapides, visuelles et solides." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#050816;
-      --bg-2:#091124;
-      --panel:rgba(255,255,255,.07);
-      --panel-strong:rgba(255,255,255,.11);
-      --border:rgba(255,255,255,.13);
-      --text:#f5f7fb;
-      --muted:#98a7c2;
-      --muted-2:#c9d4e4;
-      --primary:#7c8bff;
-      --secondary:#55e6ff;
-      --tertiary:#b86bff;
-      --shadow:0 24px 80px rgba(0,0,0,.35);
-      --radius:28px;
-      --radius-sm:18px;
-      --container:1240px;
-      --section-space:140px;
-      --grid:rgba(255,255,255,.06);
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:"Inter",system-ui,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 15% 20%, rgba(85,230,255,.12), transparent 0 24%),
-        radial-gradient(circle at 80% 10%, rgba(124,139,255,.16), transparent 0 22%),
-        radial-gradient(circle at 50% 85%, rgba(184,107,255,.10), transparent 0 24%),
-        linear-gradient(180deg, #050816 0%, #081120 45%, #070d1b 100%);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size:70px 70px;
-      mask-image:radial-gradient(circle at center, black 30%, transparent 90%);
-      opacity:.25;
-      z-index:-2;
-    }
-
-    img{display:block;max-width:100%}
-    a{text-decoration:none;color:inherit}
-    button,input,textarea{font:inherit}
-
-    .container{
-      width:min(var(--container), calc(100% - 40px));
-      margin:0 auto;
-      position:relative;
-      z-index:2;
-    }
-
-    .section{padding:var(--section-space) 0}
-
-    .section-head{
-      max-width:760px;
-      margin:0 auto 52px;
-      text-align:center;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:var(--muted-2);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-size:.74rem;
-      font-weight:800;
-      backdrop-filter:blur(12px);
-    }
-
-    .eyebrow::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:linear-gradient(135deg, var(--secondary), var(--primary));
-      box-shadow:0 0 20px rgba(85,230,255,.55);
-    }
-
-    h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif;line-height:1.02;letter-spacing:-.04em}
-    h2{font-size:clamp(2.3rem, 5vw, 4.3rem);margin-top:20px}
-    p.lead,
-    .section-head p{font-size:1.06rem;color:var(--muted);margin-top:16px}
-
-    .site-header{
-      position:fixed;
-      inset:16px 0 auto;
-      z-index:100;
-    }
-
-    .header-shell{
-      width:min(1120px, calc(100% - 28px));
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      padding:16px 18px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      background:rgba(8,14,28,.62);
-      backdrop-filter:blur(18px) saturate(140%);
-      box-shadow:0 10px 35px rgba(0,0,0,.18);
-    }
-
-    .brand{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      font-weight:900;
-      letter-spacing:-.02em;
-    }
-
-    .brand-mark{
-      width:44px;
-      height:44px;
-      border-radius:15px;
-      position:relative;
-      overflow:hidden;
-      background:linear-gradient(145deg, rgba(124,139,255,.95), rgba(85,230,255,.95));
-      box-shadow:0 10px 30px rgba(85,230,255,.22);
-    }
-
-    .brand-mark::before,
-    .brand-mark::after{
-      content:"";
-      position:absolute;
-      inset:auto;
-      border-radius:999px;
-      background:rgba(255,255,255,.28);
-      filter:blur(2px);
-    }
-
-    .brand-mark::before{width:36px;height:9px;top:8px;left:5px;transform:rotate(-22deg)}
-    .brand-mark::after{width:28px;height:8px;bottom:9px;right:6px;transform:rotate(-22deg)}
-
-    .brand span{
-      font-size:1.02rem;
-      background:linear-gradient(135deg, #ffffff, #b9ddff 70%, #8ff1ff);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:24px;
-    }
-
-    .nav a{
-      color:var(--muted);
-      font-weight:600;
-      font-size:.95rem;
-      transition:color .25s ease, transform .25s ease;
-    }
-
-    .nav a:hover{color:var(--text);transform:translateY(-1px)}
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:54px;
-      padding:0 22px;
-      border-radius:999px;
-      border:1px solid transparent;
-      font-weight:800;
-      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
-      position:relative;
-      overflow:hidden;
-      cursor:pointer;
-      white-space:nowrap;
-    }
-
-    .btn::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(115deg, transparent 20%, rgba(255,255,255,.32) 50%, transparent 80%);
-      transform:translateX(-130%);
-      transition:transform .8s ease;
-    }
-
-    .btn:hover::after{transform:translateX(130%)}
-    .btn:hover{transform:translateY(-2px)}
-
-    .btn-primary{
-      color:#06101a;
-      background:linear-gradient(135deg, var(--secondary), var(--primary) 55%, #d190ff);
-      box-shadow:0 18px 45px rgba(85,230,255,.18);
-    }
-
-    .btn-secondary{
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.045);
-      color:var(--text);
-    }
-
-    .hero{
-      position:relative;
-      padding:170px 0 100px;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      overflow:clip;
-    }
-
-    .hero::before,
-    .hero::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      filter:blur(25px);
-      z-index:0;
-      animation:floatBlob 14s ease-in-out infinite;
-    }
-
-    .hero::before{
-      width:560px;
-      height:560px;
-      top:-180px;
-      right:-140px;
-      background:radial-gradient(circle, rgba(85,230,255,.18), transparent 65%);
-    }
-
-    .hero::after{
-      width:520px;
-      height:520px;
-      left:-160px;
-      bottom:-220px;
-      background:radial-gradient(circle, rgba(184,107,255,.14), transparent 65%);
-      animation-delay:-5s;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:48px;
-      align-items:center;
-    }
-
-    .hero-copy{
-      max-width:720px;
-      position:relative;
-      z-index:2;
-    }
-
-    .hero-title{
-      margin-top:24px;
-      font-size:clamp(3.2rem, 8vw, 7rem);
-      line-height:.93;
-    }
-
-    .hero-title .line{
-      display:block;
-      overflow:hidden;
-    }
-
-    .hero-title .line span{
-      display:inline-block;
-      transform:translateY(112%);
-      opacity:0;
-      animation:riseIn 1s cubic-bezier(.21,1,.32,1) forwards;
-    }
-
-    .hero-title .line:nth-child(2) span{animation-delay:.12s}
-    .hero-title .line:nth-child(3) span{animation-delay:.24s}
-
-    .hero-title em{
-      font-style:normal;
-      background:linear-gradient(135deg, #cfd7ff 0%, var(--secondary) 45%, #f0a0ff 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .hero-text{
-      margin-top:26px;
-      max-width:640px;
-      font-size:1.08rem;
-      color:var(--muted);
-      opacity:0;
-      transform:translateY(22px);
-      animation:fadeUp .85s ease .45s forwards;
-    }
-
-    .hero-actions{
-      margin-top:32px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      opacity:0;
-      transform:translateY(22px);
-      animation:fadeUp .85s ease .6s forwards;
-    }
-
-    .hero-notes{
-      margin-top:34px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:16px;
-      opacity:0;
-      transform:translateY(26px);
-      animation:fadeUp .85s ease .78s forwards;
-    }
-
-    .mini-card{
-      padding:16px 16px 18px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      backdrop-filter:blur(10px);
-      box-shadow:var(--shadow);
-    }
-
-    .mini-card strong{
-      display:block;
-      margin-bottom:5px;
-      font-size:1rem;
-    }
-
-    .mini-card span{color:var(--muted);font-size:.93rem}
-
-    .hero-visual{
-      position:relative;
-      min-height:720px;
-      z-index:1;
-    }
-
-    .hero-panel,
-    .floating-card,
-    .floating-stat{
-      position:absolute;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.11);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(18px);
-    }
-
-    .hero-panel{
-      inset:70px 28px 88px 28px;
-      overflow:hidden;
-      transform:perspective(1200px) rotateY(-6deg) rotateX(4deg);
-      transform-style:preserve-3d;
-    }
-
-    .hero-panel img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:.90;
-      transform:scale(1.05);
-    }
-
-    .hero-panel::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(6,11,22,.02), rgba(6,11,22,.45)),
-        linear-gradient(130deg, rgba(124,139,255,.22), transparent 45%, rgba(85,230,255,.16));
-    }
-
-    .floating-card{
-      width:250px;
-      padding:20px;
-      animation:floatCard 7s ease-in-out infinite;
-    }
-
-    .floating-card.top{
-      top:18px;
-      left:0;
-      animation-delay:-1s;
-    }
-
-    .floating-card.bottom{
-      right:0;
-      bottom:0;
-      animation-delay:-3s;
-    }
-
-    .floating-card h3{
-      font-size:1.18rem;
-      margin-bottom:8px;
-    }
-
-    .floating-card p{color:var(--muted);font-size:.95rem}
-
-    .floating-stat{
-      left:38px;
-      bottom:36px;
-      padding:18px 20px;
-      min-width:190px;
-      animation:floatCard 8.5s ease-in-out infinite;
-      animation-delay:-2s;
-    }
-
-    .floating-stat strong{
-      display:block;
-      font-size:2rem;
-      line-height:1;
-      margin-bottom:6px;
-      background:linear-gradient(135deg, #ffffff, var(--secondary));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .floating-stat span{color:var(--muted)}
-
-    .hero-strip{
-      margin-top:32px;
-      display:grid;
-      grid-template-columns:1.2fr .8fr .8fr;
-      gap:18px;
-    }
-
-    .visual-chip{
-      min-height:180px;
-      border-radius:26px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      position:relative;
-      box-shadow:var(--shadow);
-    }
-
-    .visual-chip img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:transform .8s ease, opacity .5s ease;
-      opacity:.92;
-    }
-
-    .visual-chip:hover img{transform:scale(1.08);opacity:1}
-
-    .visual-chip .label{
-      position:absolute;
-      left:16px;
-      bottom:16px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(7,12,24,.52);
-      backdrop-filter:blur(10px);
-      font-size:.84rem;
-      font-weight:700;
-    }
-
-    .ticker-wrap{
-      margin-top:48px;
-      overflow:hidden;
-      border-top:1px solid rgba(255,255,255,.06);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background:rgba(255,255,255,.025);
-    }
-
-    .ticker{
-      display:flex;
-      gap:26px;
-      width:max-content;
-      padding:18px 0;
-      animation:marquee 24s linear infinite;
-      will-change:transform;
-    }
-
-    .ticker span{
-      color:var(--muted-2);
-      text-transform:uppercase;
-      letter-spacing:.22em;
-      font-size:.82rem;
-      font-weight:800;
-      white-space:nowrap;
-      opacity:.95;
-    }
-
-    .ticker span::before{
-      content:"✦";
-      margin-right:22px;
-      color:var(--secondary);
-    }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-    }
-
-    .bento{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:22px;
-      align-items:stretch;
-    }
-
-    .card,
-    .image-card,
-    .case-card,
-    .stack-card,
-    .contact-shell{
-      background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-      border-radius:var(--radius);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .card{padding:30px}
-    .card p{color:var(--muted)}
-
-    .service-layout{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:24px;
-      align-items:start;
-    }
-
-    .image-card.large{min-height:620px}
-    .image-card.large img,
-    .case-card .media img,
-    .stack-visual img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .image-card.large::after,
-    .case-card .media::after,
-    .stack-visual::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(3,7,16,.02), rgba(3,7,16,.18) 45%, rgba(3,7,16,.66));
-      pointer-events:none;
-    }
-
-    .image-card .overlay-copy{
-      position:absolute;
-      inset:auto 22px 22px 22px;
-      z-index:2;
-    }
-
-    .overlay-copy h3{font-size:2rem;margin-bottom:10px}
-    .overlay-copy p{color:#d6e2f1;max-width:520px}
-
-    .service-stack{
-      display:grid;
-      gap:22px;
-    }
-
-    .service-item h3,
-    .case-content h3,
-    .stack-copy h3,
-    .process-item h3,
-    .contact-copy h3{font-size:1.5rem;margin-bottom:12px}
-
-    .service-item ul,
-    .process-item ul{list-style:none;display:grid;gap:12px;margin-top:18px}
-
-    .service-item li,
-    .process-item li{
-      position:relative;
-      padding-left:18px;
-      color:var(--muted-2);
-    }
-
-    .service-item li::before,
-    .process-item li::before{
-      content:"";
-      position:absolute;
-      width:8px;
-      height:8px;
-      left:0;
-      top:.62em;
-      border-radius:50%;
-      background:linear-gradient(135deg, var(--secondary), var(--primary));
-      box-shadow:0 0 16px rgba(85,230,255,.45);
-    }
-
-    .card-number{
-      display:inline-flex;
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:18px;
-      font-weight:900;
-      color:#09111b;
-      background:linear-gradient(135deg, var(--secondary), var(--primary));
-      box-shadow:0 15px 40px rgba(85,230,255,.15);
-    }
-
-    .case-list{display:grid;gap:22px}
-
-    .case-card{
-      display:grid;
-      grid-template-columns:.98fr 1.02fr;
-      min-height:520px;
-    }
-
-    .case-card.reverse{grid-template-columns:1.02fr .98fr}
-    .case-card.reverse .media{order:2}
-    .case-card.reverse .case-content{order:1}
-
-    .case-card .media{position:relative;min-height:100%}
-    .case-content{
-      padding:38px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:16px;
-    }
-
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      min-height:38px;
-      padding:0 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:var(--muted-2);
-      font-size:.85rem;
-      font-weight:700;
-    }
-
-    .case-metrics{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:14px;
-      margin-top:8px;
-    }
-
-    .metric{
-      padding:16px;
-      border-radius:20px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .metric strong{display:block;font-size:1.4rem;margin-bottom:5px}
-    .metric span{font-size:.88rem;color:var(--muted)}
-
-    .stack-section{
-      display:grid;
-      grid-template-columns:.92fr 1.08fr;
-      gap:24px;
-      align-items:stretch;
-    }
-
-    .stack-card{display:grid;grid-template-rows:1fr auto}
-
-    .stack-visual{
-      position:relative;
-      min-height:620px;
-      overflow:hidden;
-    }
-
-    .stack-copy{padding:30px}
-
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:16px;
-      margin-top:20px;
-    }
-
-    .feature{
-      padding:18px;
-      border-radius:20px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .feature strong{display:block;margin-bottom:8px}
-    .feature p{font-size:.93rem;color:var(--muted)}
-
-    .process-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:18px;
-    }
-
-    .process-item{
-      padding:28px;
-      min-height:320px;
-    }
-
-    .process-item .step{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:54px;
-      height:54px;
-      border-radius:18px;
-      margin-bottom:18px;
-      font-weight:900;
-      font-size:1.04rem;
-      color:#08111a;
-      background:linear-gradient(135deg, var(--secondary), var(--primary), var(--tertiary));
-      box-shadow:0 18px 40px rgba(85,230,255,.18);
-    }
-
-    .quote-band{
-      padding:42px 32px;
-      text-align:center;
-      background:linear-gradient(135deg, rgba(124,139,255,.15), rgba(85,230,255,.10), rgba(184,107,255,.12));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:32px;
-      box-shadow:var(--shadow);
-    }
-
-    .quote-band p{
-      font-size:clamp(1.4rem, 3vw, 2.4rem);
-      line-height:1.2;
-      letter-spacing:-.04em;
-      color:#eef5ff;
-      max-width:980px;
-      margin:0 auto;
-    }
-
-    .contact-shell{
-      display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:24px;
-      padding:26px;
-    }
-
-    .contact-copy{
-      padding:12px 10px 12px 4px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .contact-points{
-      display:grid;
-      gap:14px;
-      margin-top:24px;
-    }
-
-    .contact-point{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:18px 20px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.04);
-    }
-
-    .contact-point span{display:block;color:var(--muted);font-size:.9rem}
-    .contact-point strong{display:block;margin-top:4px}
-
-    .contact-form{
-      padding:26px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-    }
-
-    .form-grid{display:grid;gap:16px}
-
-    .contact-form label{display:grid;gap:8px}
-
-    .contact-form span{
-      color:var(--muted-2);
-      font-size:.95rem;
-      font-weight:700;
-    }
-
-    .contact-form input,
-    .contact-form textarea{
-      width:100%;
-      border:none;
-      outline:none;
-      color:var(--text);
-      background:rgba(255,255,255,.055);
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:18px;
-      padding:16px 18px;
-      transition:border-color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
-    }
-
-    .contact-form textarea{min-height:170px;resize:vertical}
-
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder{color:#8fa0b8}
-
-    .contact-form input:focus,
-    .contact-form textarea:focus{
-      border-color:rgba(85,230,255,.45);
-      background:rgba(255,255,255,.075);
-      box-shadow:0 0 0 4px rgba(85,230,255,.10);
-      transform:translateY(-1px);
-    }
-
-    .footer{
-      padding:36px 0 48px;
-      color:var(--muted);
-    }
-
-    .footer-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding-top:28px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .footer-nav{display:flex;flex-wrap:wrap;gap:18px}
-
-    .reveal{
-      opacity:0;
-      transform:translateY(42px) scale(.985);
-      filter:blur(8px);
-      transition:opacity .85s cubic-bezier(.2,.8,.2,1), transform .85s cubic-bezier(.2,.8,.2,1), filter .85s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .reveal.in-view{
-      opacity:1;
-      transform:none;
-      filter:blur(0);
-    }
-
-    .parallax{will-change:transform}
-
-    @keyframes riseIn{
-      0%{transform:translateY(112%);opacity:0;filter:blur(10px)}
-      100%{transform:translateY(0);opacity:1;filter:blur(0)}
-    }
-
-    @keyframes fadeUp{
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    @keyframes floatCard{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-14px)}
-    }
-
-    @keyframes floatBlob{
-      0%,100%{transform:translate3d(0,0,0)}
-      50%{transform:translate3d(0,-18px,0)}
-    }
-
-    @keyframes marquee{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
-
-    @media (max-width:1180px){
-      :root{--section-space:110px}
-      .hero-grid,
-      .service-layout,
-      .stack-section,
-      .contact-shell,
-      .case-card,
-      .case-card.reverse,
-      .bento{grid-template-columns:1fr}
-      .case-card.reverse .media,
-      .case-card.reverse .case-content{order:initial}
-      .hero-visual{min-height:620px}
-      .hero-panel{inset:64px 16px 84px 16px}
-      .process-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
-    }
-
-    @media (max-width:900px){
-      .header-shell{border-radius:26px;padding:14px 16px;flex-wrap:wrap;justify-content:center}
-      .nav{width:100%;justify-content:center;gap:18px}
-      .hero{padding-top:190px;min-height:auto}
-      .hero-grid,
-      .grid-2{grid-template-columns:1fr}
-      .hero-notes,
-      .hero-strip,
-      .feature-grid,
-      .case-metrics{grid-template-columns:1fr}
-      .hero-title{font-size:clamp(2.8rem, 11vw, 5rem)}
-      .hero-visual{min-height:560px}
-      .floating-card{width:min(240px, calc(100% - 52px))}
-      .floating-card.bottom{right:10px}
-      .floating-card.top{left:10px}
-      .floating-stat{left:20px;bottom:20px}
-    }
-
-    @media (max-width:640px){
-      :root{--section-space:88px}
-      .container{width:min(var(--container), calc(100% - 26px))}
-      .site-header{inset:12px 0 auto}
-      .header-shell{width:calc(100% - 20px)}
-      .btn{width:100%}
-      .hero-actions{flex-direction:column}
-      .card,
-      .contact-form,
-      .process-item,
-      .case-content,
-      .contact-shell{padding:22px}
-      .hero-panel{transform:none}
-      .process-grid{grid-template-columns:1fr}
-      .footer-row{flex-direction:column;align-items:flex-start}
-      .contact-point{flex-direction:column}
-      .overlay-copy h3{font-size:1.7rem}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .hero-title .line span,
-      .hero-text,
-      .hero-actions,
-      .hero-notes,
-      .ticker,
-      .floating-card,
-      .floating-stat,
-      .hero::before,
-      .hero::after,
-      .reveal{animation:none !important;transition:none !important;opacity:1 !important;transform:none !important;filter:none !important}
-    }
-  </style>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="shortcut icon" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="favicon-32.png">
+  <meta name="theme-color" content="#070d1b">
+  <link rel="stylesheet" href="style.css">
+
+  <title>ExaCode — Expériences web premium</title>
+  <meta name="description" content="ExaCode conçoit des sites premium, des landing pages ambitieuses et des plateformes web sur mesure, plus visuelles, plus élégantes et plus mémorables.">
 </head>
 <body>
+
   <header class="site-header">
     <div class="header-shell">
-      <a class="brand" href="#top" aria-label="Accueil ExaCode">
-        <span class="brand-mark" aria-hidden="true"></span>
+      <a class="brand" href="index.html" aria-label="Accueil ExaCode">
+        <img src="logo.png" alt="Logo ExaCode">
         <span>ExaCode</span>
       </a>
 
       <nav class="nav" aria-label="Navigation principale">
         <a href="#services">Services</a>
-        <a href="#projects">Projets</a>
+        <a href="work.html">Projets</a>
         <a href="#process">Méthode</a>
-        <a href="#contact">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
-      <a class="btn btn-primary" href="#contact">Parler de votre projet</a>
+      <a class="btn btn-primary" href="contact.html">Parler de votre projet</a>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
+
+  <section class="intro-splash" aria-label="Introduction ExaCode">
+    <div class="container intro-splash-inner">
+      <div class="intro-content">
+        <div class="intro-word" aria-label="EXACODE">
+          <span class="letter from-left">E</span>
+          <span class="letter fade-in">X</span>
+          <span class="letter from-top">A</span>
+          <span class="letter fade-in">C</span>
+          <span class="letter from-bottom">O</span>
+          <span class="letter fade-in">D</span>
+          <span class="letter from-right">E</span>
+        </div>
+        <p class="intro-subtitle">Interfaces, plateformes et expériences web haut de gamme</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="site-content-shell">
+    <section class="hero section" id="top">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy">
             <span class="eyebrow">Studio digital haut de gamme</span>
 
-            <h1 class="hero-title" aria-label="Nous créons des expériences web premium qui vendent, marquent et performent.">
+            <h1 class="hero-title">
               <span class="line"><span>Des sites</span></span>
               <span class="line"><span><em>qui impressionnent</em></span></span>
               <span class="line"><span>et qui convertissent.</span></span>
@@ -989,19 +68,19 @@
 
             <p class="hero-text">
               ExaCode conçoit des expériences web plus visuelles, plus premium et beaucoup plus mémorables.
-              Landing pages ambitieuses, interfaces élégantes, plateformes sur mesure&nbsp;: tout est pensé pour
+              Landing pages ambitieuses, interfaces élégantes, plateformes sur mesure : tout est pensé pour
               créer un vrai effet de niveau, sans sacrifier la vitesse ni la clarté.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#projects">Voir la direction créative</a>
-              <a class="btn btn-secondary" href="#contact">Lancer une refonte</a>
+              <a class="btn btn-primary" href="work.html">Voir la direction créative</a>
+              <a class="btn btn-secondary" href="contact.html">Lancer une refonte</a>
             </div>
 
             <div class="hero-notes">
               <article class="mini-card">
                 <strong>Plus d’espace</strong>
-                <span>Une structure qui respire, avec de vrais respirations visuelles.</span>
+                <span>Une structure qui respire, avec de vraies respirations visuelles.</span>
               </article>
               <article class="mini-card">
                 <strong>Plus d’images</strong>
@@ -1014,9 +93,9 @@
             </div>
           </div>
 
-          <div class="hero-visual parallax" data-speed="0.06" aria-hidden="true">
+          <div class="hero-visual parallax" data-speed="0.05" aria-hidden="true">
             <div class="hero-panel">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Studio digital premium" />
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Studio digital premium">
             </div>
 
             <div class="floating-card top">
@@ -1036,24 +115,24 @@
           </div>
         </div>
 
-        <div class="hero-strip reveal" data-reveal>
+        <div class="hero-strip" data-reveal>
           <article class="visual-chip">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Collaboration produit" />
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Collaboration produit">
             <span class="label">Expérience utilisateur premium</span>
           </article>
           <article class="visual-chip">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Dashboard et analytics" />
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Dashboard et analytics">
             <span class="label">Interfaces métier</span>
           </article>
           <article class="visual-chip">
-            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80" alt="Équipe tech et design" />
+            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80" alt="Équipe tech et design">
             <span class="label">Sites à forte présence</span>
           </article>
         </div>
       </div>
     </section>
 
-    <div class="ticker-wrap reveal" data-reveal>
+    <div class="ticker-wrap" data-reveal>
       <div class="ticker">
         <span>Landing pages premium</span>
         <span>Plateformes sur mesure</span>
@@ -1076,48 +155,33 @@
 
     <section class="section" id="services">
       <div class="container">
-        <div class="section-head reveal" data-reveal>
+        <div class="section-head" data-reveal>
           <span class="eyebrow">Nouveau positionnement</span>
           <h2>Un site qui ressemble enfin à un studio haut de gamme.</h2>
           <p>
-            Au lieu d’un ensemble de cartes assez compactes, la nouvelle direction mise sur de grands aplats visuels,
-            des blocs forts, une hiérarchie plus cinématique et un parcours beaucoup plus mémorable.
+            J’ai revu la structure pour éviter les problèmes d’alignement : la grande carte visuelle s’étire bien,
+            les blocs à droite restent équilibrés et les ancres ne passent plus sous le header.
           </p>
         </div>
 
         <div class="service-layout">
-          <article class="image-card large reveal" data-reveal>
-            <img src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1400&q=80" alt="Écran premium avec interface moderne" />
+          <article class="image-card large" data-reveal>
+            <img src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1400&q=80" alt="Écran premium avec interface moderne">
             <div class="overlay-copy">
               <span class="eyebrow">Direction visuelle</span>
               <h3>Beaucoup plus de présence, beaucoup plus de souffle.</h3>
               <p>
-                La refonte donne de l’amplitude à la marque&nbsp;: grands visuels, titres puissants, fonds profonds,
+                La refonte donne de l’amplitude à la marque : grands visuels, titres puissants, fonds profonds,
                 cartes en verre, images au service du message et rythme plus maîtrisé entre chaque section.
               </p>
             </div>
           </article>
 
-          <div class="service-stack">
-            <article class="card service-item reveal" data-reveal>
+          <div class="service-stack two">
+            <article class="card service-item" data-reveal>
               <span class="card-number">01</span>
-              <h3>Sites vitrines premium</h3>
-              <p>
-                Des pages qui n’ont plus l’air d’un simple site “propre”, mais d’une vraie expérience de marque.
-              </p>
-              <ul>
-                <li>Hero plus spectaculaire</li>
-                <li>Sections aérées et narratives</li>
-                <li>Présence visuelle beaucoup plus forte</li>
-              </ul>
-            </article>
-
-            <article class="card service-item reveal" data-reveal>
-              <span class="card-number">02</span>
               <h3>Interfaces et plateformes</h3>
-              <p>
-                Même direction de qualité pour les dashboards, espaces clients et produits internes.
-              </p>
+              <p>Même direction de qualité pour les dashboards, espaces clients et produits internes.</p>
               <ul>
                 <li>Composants plus lisibles</li>
                 <li>Hiérarchie plus claire</li>
@@ -1125,12 +189,10 @@
               </ul>
             </article>
 
-            <article class="card service-item reveal" data-reveal>
-              <span class="card-number">03</span>
+            <article class="card service-item" data-reveal>
+              <span class="card-number">02</span>
               <h3>Refonte orientée perception</h3>
-              <p>
-                L’objectif n’est pas juste d’être “plus joli”, mais de faire monter la valeur perçue de manière nette.
-              </p>
+              <p>L’objectif n’est pas juste d’être “plus joli”, mais de faire monter la valeur perçue de manière nette.</p>
               <ul>
                 <li>Image de marque renforcée</li>
                 <li>CTA mieux intégrés</li>
@@ -1139,90 +201,19 @@
             </article>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-head reveal" data-reveal>
-          <span class="eyebrow">Direction créative</span>
-          <h2>Trois grands blocs qui montrent immédiatement le niveau.</h2>
-          <p>
-            Ici, on abandonne la logique trop sage pour un rendu plus éditorial, plus immersif et plus haut de gamme.
-          </p>
-        </div>
-
-        <div class="case-list">
-          <article class="case-card reveal" data-reveal>
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80" alt="Landing page premium en plein écran" />
-            </div>
-            <div class="case-content">
-              <span class="eyebrow">Landing premium</span>
-              <h3>Un hero qui attire, explique et impressionne dès la première seconde.</h3>
-              <p>
-                Grande image, profondeur visuelle, cartes flottantes, message plus ambitieux et CTA mis en scène.
-                Cette approche transforme la page d’accueil en vitrine premium, au lieu d’un simple empilement de blocs.
-              </p>
-              <div class="pill-row">
-                <span class="pill">Impact immédiat</span>
-                <span class="pill">Niveau perçu élevé</span>
-                <span class="pill">Narration visuelle</span>
-              </div>
-              <div class="case-metrics">
-                <div class="metric"><strong>Grand</strong><span>Plus de respiration entre les sections</span></div>
-                <div class="metric"><strong>Dense</strong><span>Mais sans jamais paraître chargé</span></div>
-                <div class="metric"><strong>Fluide</strong><span>Animations douces et lisibles</span></div>
-              </div>
-            </div>
+        <div class="stats-band" data-reveal>
+          <article class="stat-card">
+            <strong>Plus grand</strong>
+            <span>Sections aérées, rythme respirant et grande place donnée aux visuels.</span>
           </article>
-
-          <article class="case-card reverse reveal" data-reveal>
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80" alt="Interface produit moderne et élégante" />
-            </div>
-            <div class="case-content">
-              <span class="eyebrow">Structure moderne</span>
-              <h3>Une grille plus magazine, plus immersive et beaucoup moins “template”.</h3>
-              <p>
-                Le nouveau site alterne images larges, cartes éditoriales et blocs de contenu à fort contraste.
-                Résultat&nbsp;: le regard circule mieux, le site paraît plus vivant et la marque monte immédiatement en gamme.
-              </p>
-              <div class="pill-row">
-                <span class="pill">Bento layout</span>
-                <span class="pill">Images pleine largeur</span>
-                <span class="pill">Glass cards</span>
-              </div>
-              <div class="case-metrics">
-                <div class="metric"><strong>Plus visuel</strong><span>Des images partout où elles servent le message</span></div>
-                <div class="metric"><strong>Plus haut de gamme</strong><span>Texture, lumière et profondeur</span></div>
-                <div class="metric"><strong>Plus cohérent</strong><span>Une direction unique sur toute la page</span></div>
-              </div>
-            </div>
+          <article class="stat-card">
+            <strong>Plus net</strong>
+            <span>Meilleure structure, meilleure hiérarchie et meilleure cohérence visuelle.</span>
           </article>
-
-          <article class="case-card reveal" data-reveal>
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1400&q=80" alt="Équipe de travail en environnement technologique" />
-            </div>
-            <div class="case-content">
-              <span class="eyebrow">Motion & détails</span>
-              <h3>Des animations variées, mais propres, pour donner une sensation de produit fini.</h3>
-              <p>
-                Apparitions progressives, images qui vivent légèrement au survol, rubans animés, halo lumineux,
-                micro-effets sur les boutons, cartes flottantes et parallaxe légère&nbsp;: le site gagne en caractère sans devenir lourd.
-              </p>
-              <div class="pill-row">
-                <span class="pill">Scroll reveal</span>
-                <span class="pill">Hover premium</span>
-                <span class="pill">Parallaxe légère</span>
-              </div>
-              <div class="case-metrics">
-                <div class="metric"><strong>Subtil</strong><span>Jamais d’animation gadget</span></div>
-                <div class="metric"><strong>Pro</strong><span>Compatibilité motion réduite prévue</span></div>
-                <div class="metric"><strong>Vivace</strong><span>Le site paraît réellement vivant</span></div>
-              </div>
-            </div>
+          <article class="stat-card">
+            <strong>Plus vivant</strong>
+            <span>Motion subtil, parallaxe légère et micro-interactions qui renforcent le niveau.</span>
           </article>
         </div>
       </div>
@@ -1230,45 +221,52 @@
 
     <section class="section">
       <div class="container">
-        <div class="stack-section">
-          <article class="stack-card reveal" data-reveal>
-            <div class="stack-visual parallax" data-speed="0.04">
-              <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1400&q=80" alt="Mur d'écrans et environnement digital" />
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Direction créative</span>
+          <h2>Trois grands blocs qui montrent immédiatement le niveau.</h2>
+          <p>On abandonne la logique trop sage pour un rendu plus éditorial, plus immersif et plus haut de gamme.</p>
+        </div>
+
+        <div class="case-list">
+          <article class="case-card" data-reveal>
+            <div class="media">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80" alt="Landing page premium en plein écran">
             </div>
-            <div class="stack-copy">
-              <span class="eyebrow">Ce que cette version apporte</span>
-              <h3>Le site vend mieux ton niveau avant même qu’on lise tout.</h3>
-              <p class="lead">
-                La première impression devient une arme&nbsp;: visuels puissants, profondeur, rythme, luxe digital,
-                et des sections qui ont enfin la place d’exister.
-              </p>
+            <div class="case-content">
+              <span class="eyebrow">Landing premium</span>
+              <h3>Un hero qui attire, explique et impressionne dès la première seconde.</h3>
+              <p>Grande image, profondeur visuelle, cartes flottantes, message plus ambitieux et CTA mis en scène.</p>
+              <div class="pill-row">
+                <span class="pill">Impact immédiat</span>
+                <span class="pill">Niveau perçu élevé</span>
+                <span class="pill">Narration visuelle</span>
+              </div>
+              <div class="case-metrics">
+                <div class="metric"><strong>Grand</strong><span>Plus de respiration entre les sections</span></div>
+                <div class="metric"><strong>Dense</strong><span>Sans jamais paraître chargé</span></div>
+                <div class="metric"><strong>Fluide</strong><span>Animations douces et lisibles</span></div>
+              </div>
             </div>
           </article>
 
-          <article class="card reveal" data-reveal>
-            <span class="eyebrow">Architecture recommandée</span>
-            <h3 style="font-size:2.1rem; margin-top:20px; margin-bottom:14px;">Une base claire pour une vraie présence premium.</h3>
-            <p>
-              Cette version fonctionne très bien comme nouvelle homepage unique, puis peut être déclinée en pages dédiées.
-            </p>
-
-            <div class="feature-grid">
-              <article class="feature">
-                <strong>Accueil immersif</strong>
-                <p>Hero spectaculaire, présentation, preuves visuelles, projets et CTA.</p>
-              </article>
-              <article class="feature">
-                <strong>Page Work plus éditoriale</strong>
-                <p>Grands visuels, cas d’usage détaillés, avant/après, méthodes et résultats.</p>
-              </article>
-              <article class="feature">
-                <strong>Page Contact plus premium</strong>
-                <p>Bloc d’introduction fort, formulaire mieux mis en scène et infos utiles plus propres.</p>
-              </article>
-              <article class="feature">
-                <strong>Système visuel cohérent</strong>
-                <p>Typographie forte, espaces généreux, composants homogènes et animations maîtrisées.</p>
-              </article>
+          <article class="case-card reverse" data-reveal>
+            <div class="media">
+              <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80" alt="Interface produit moderne et élégante">
+            </div>
+            <div class="case-content">
+              <span class="eyebrow">Structure moderne</span>
+              <h3>Une grille plus magazine, plus immersive et beaucoup moins “template”.</h3>
+              <p>Images larges, cartes éditoriales et blocs de contenu à fort contraste pour faire monter le site en gamme.</p>
+              <div class="pill-row">
+                <span class="pill">Bento layout</span>
+                <span class="pill">Images pleine largeur</span>
+                <span class="pill">Glass cards</span>
+              </div>
+              <div class="case-metrics">
+                <div class="metric"><strong>Plus visuel</strong><span>Des images partout où elles servent le message</span></div>
+                <div class="metric"><strong>Plus premium</strong><span>Texture, lumière et profondeur</span></div>
+                <div class="metric"><strong>Plus cohérent</strong><span>Une direction unique sur toute la page</span></div>
+              </div>
             </div>
           </article>
         </div>
@@ -1277,26 +275,23 @@
 
     <section class="section" id="process">
       <div class="container">
-        <div class="section-head reveal" data-reveal>
+        <div class="section-head" data-reveal>
           <span class="eyebrow">Méthode</span>
-          <h2>Une refonte qui ne change pas juste le style, mais la perception complète.</h2>
-          <p>
-            Chaque étape pousse le site vers plus de densité visuelle, plus de contrôle et une impression de qualité bien plus forte.
-          </p>
+          <h2>Une refonte qui change la perception complète du site.</h2>
+          <p>Chaque étape pousse ExaCode vers plus de densité visuelle, plus de contrôle et une impression de qualité plus forte.</p>
         </div>
 
         <div class="process-grid">
-          <article class="card process-item reveal" data-reveal>
+          <article class="card process-item" data-reveal>
             <span class="step">01</span>
             <h3>Direction</h3>
-            <p>On définit la sensation recherchée&nbsp;: premium, visuelle, ambitieuse, rapide, structurée.</p>
+            <p>On définit la sensation recherchée : premium, visuelle, ambitieuse, rapide et structurée.</p>
             <ul>
               <li>Positionnement plus haut de gamme</li>
               <li>Références visuelles plus fortes</li>
             </ul>
           </article>
-
-          <article class="card process-item reveal" data-reveal>
+          <article class="card process-item" data-reveal>
             <span class="step">02</span>
             <h3>Structure</h3>
             <p>On casse la monotonie des cartes classiques avec une composition beaucoup plus éditoriale.</p>
@@ -1305,18 +300,16 @@
               <li>Grilles asymétriques et respirantes</li>
             </ul>
           </article>
-
-          <article class="card process-item reveal" data-reveal>
+          <article class="card process-item" data-reveal>
             <span class="step">03</span>
             <h3>Visuals</h3>
-            <p>On donne une vraie place aux images, aux textures, à la profondeur et aux halos lumineux.</p>
+            <p>On donne une vraie place aux images, à la profondeur et aux halos lumineux.</p>
             <ul>
               <li>Images immersives</li>
               <li>Détails qui renforcent la marque</li>
             </ul>
           </article>
-
-          <article class="card process-item reveal" data-reveal>
+          <article class="card process-item" data-reveal>
             <span class="step">04</span>
             <h3>Motion</h3>
             <p>On anime le site avec tact pour qu’il paraisse vivant, fini et premium.</p>
@@ -1331,117 +324,33 @@
 
     <section class="section">
       <div class="container">
-        <div class="quote-band reveal" data-reveal>
-          <p>
-            Le but n’est plus seulement d’avoir un site propre. Le but, c’est d’avoir un site qui fait dire&nbsp;:
-            <strong>“ok, eux, ils sont vraiment au niveau.”</strong>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-shell reveal" data-reveal>
-          <div class="contact-copy">
-            <span class="eyebrow">Discutons du projet</span>
-            <h3>Prêt à passer sur une version beaucoup plus forte de ton site&nbsp;?</h3>
-            <p class="lead">
-              Cette refonte pose déjà une direction complète. Tu peux la reprendre comme nouvelle homepage,
-              ou la découper ensuite en <strong>Accueil / Work / Contact</strong> avec le même langage visuel.
-            </p>
-
-            <div class="contact-points">
-              <a class="contact-point" href="tel:+470112745">
-                <div>
-                  <span>Téléphone</span>
-                  <strong>+470 11 27 45</strong>
-                </div>
-                <span>Réponse rapide</span>
-              </a>
-              <a class="contact-point" href="mailto:exacodeofficial@gmail.com">
-                <div>
-                  <span>Email</span>
-                  <strong>exacodeofficial@gmail.com</strong>
-                </div>
-                <span>Brief & prise de contact</span>
-              </a>
-            </div>
-          </div>
-
-          <form class="contact-form" action="https://formspree.io/f/myknzyky" method="POST">
-            <div class="form-grid">
-              <label>
-                <span>Votre nom</span>
-                <input type="text" name="name" placeholder="Votre nom" required>
-              </label>
-
-              <label>
-                <span>Votre email</span>
-                <input type="email" name="email" placeholder="Votre email" required>
-              </label>
-
-              <label>
-                <span>Votre message</span>
-                <textarea name="message" placeholder="Décrivez votre besoin, votre activité et le niveau de refonte souhaité." required></textarea>
-              </label>
-
-              <button type="submit" class="btn btn-primary">Envoyer le message</button>
-            </div>
-          </form>
+        <div class="quote-band" data-reveal>
+          <p>Le but n’est plus seulement d’avoir un site propre. Le but, c’est d’avoir un site qui fait dire : <strong>“ok, eux, ils sont vraiment au niveau.”</strong></p>
         </div>
       </div>
     </section>
   </main>
 
+
   <footer class="footer">
     <div class="container">
       <div class="footer-row">
-        <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true"></span>
+        <a class="brand" href="index.html">
+          <img src="logo.png" alt="Logo ExaCode">
           <span>ExaCode</span>
         </a>
 
         <div class="footer-nav">
-          <a href="#services">Services</a>
-          <a href="#projects">Projets</a>
-          <a href="#process">Méthode</a>
-          <a href="#contact">Contact</a>
+          <a href="index.html">Accueil</a>
+          <a href="work.html">Projets</a>
+          <a href="contact.html">Contact</a>
         </div>
 
-        <p>© 2026 ExaCode — Refonte premium</p>
+        <p>© 2026 ExaCode — Tous droits réservés</p>
       </div>
     </div>
   </footer>
+  <script src="script.js"></script>
 
-  <script>
-    const reveals = document.querySelectorAll('[data-reveal]');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14, rootMargin: '0px 0px -7% 0px' });
-
-    reveals.forEach((el) => {
-      el.classList.add('reveal');
-      observer.observe(el);
-    });
-
-    const parallaxItems = document.querySelectorAll('.parallax');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!reduceMotion) {
-      window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        parallaxItems.forEach((item) => {
-          const speed = Number(item.dataset.speed || 0.04);
-          item.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-        });
-      }, { passive: true });
-    }
-  </script>
 </body>
 </html>
